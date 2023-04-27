@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Container } from './App.styled';
-import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
-import Statistics from './Statistics/Statistics';
+import FeedbackOptions from './FeedbackOptions';
+import Statistics from './Statistics';
+import Section from './Section';
+import Notification from './Notification';
 // import PropTypes from 'prop-types';
 
 class App extends Component {
@@ -30,32 +32,27 @@ class App extends Component {
     return (
       <>
         <Container>
-          <h2>Please leave feedback</h2>
-          <FeedbackOptions
-            options={this.state}
-            onLeaveFeedback={this.onLeaveFeedback}
-          />
+          <Section title={'Please leave feedback'}>
+            <FeedbackOptions
+              options={this.state}
+              onLeaveFeedback={this.onLeaveFeedback}
+            />
+          </Section>
         </Container>
         <Container>
-          <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={this.countTotalFeedback()}
-            positivePercentage={this.countPositiveFeedbackPercentage()}
-          />
-          <h2>Statistic</h2>
-          <ul>
-            <li>
-              <p>Good: </p>
-            </li>
-            <li>
-              <p>Neutral: </p>
-            </li>
-            <li>
-              <p>Bad: </p>
-            </li>
-          </ul>
+          <Section title="Statistics">
+            {!total ? (
+              <Notification message={'There is no feedback'} />
+            ) : (
+              <Statistics
+                good={good}
+                neutral={neutral}
+                bad={bad}
+                total={this.countTotalFeedback()}
+                positivePercentage={this.countPositiveFeedbackPercentage()}
+              />
+            )}
+          </Section>
         </Container>
       </>
     );

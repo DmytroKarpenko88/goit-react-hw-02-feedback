@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 export const Container = styled.ul`
   display: flex;
   gap: 15px;
+  justify-content: center;
 `;
 export const Item = styled.li`
   padding: 5px;
