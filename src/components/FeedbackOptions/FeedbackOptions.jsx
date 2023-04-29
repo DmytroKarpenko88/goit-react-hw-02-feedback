@@ -9,7 +9,7 @@ const FeedbackOptions = ({ options, onLeaveFeedback }) => {
 
   return (
     <Container>
-      {Object.keys(options).map(feedbackType => {
+      {options.map(feedbackType => {
         return (
           <Item key={feedbackType}>
             <Btn onClick={onClickBtn(feedbackType)}>{feedbackType}</Btn>
@@ -21,7 +21,7 @@ const FeedbackOptions = ({ options, onLeaveFeedback }) => {
 };
 
 FeedbackOptions.propTypes = {
-  options: PropTypes.objectOf(PropTypes.number).isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
   onLeaveFeedback: PropTypes.func.isRequired,
 };
 
